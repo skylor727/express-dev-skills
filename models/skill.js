@@ -1,21 +1,33 @@
-const skills = [
-  { id: 1, skill: "Get" },
-  { id: 2, skill: "Post" },
-  { id: 3, skill: "Put" },
-  { id: 4, skill: "Delete" },
-  { id: 5, skill: "Crud" },
+let skills = [
+  { skill: "Javascript", id: 1, mastered: true },
+  { skill: "Html", id: 2, mastered: false },
+  { skill: "CSS", id: 3, mastered: false },
+  { skill: "Express", id: 4, mastered: false },
+  { skill: "Node", id: 5, mastered: false },
 ];
 
 module.exports = {
   getAll,
   getOne,
+  create,
+  deleteOne,
 };
 
-function getOne(id) {
-  id = parseInt(id);
-  return skills.find((skill) => skill.id === id);
+function create(skill) {
+  skill.id = skills.length + 1;
+  skills.push(skill);
 }
 
 function getAll() {
   return skills;
+}
+
+function getOne(id) {
+  id = parseInt(id);
+  return skills.find((s) => s.id === id);
+}
+
+function deleteOne(id) {
+  id = parseInt(id);
+  skills = skills.filter((skill) => skill.id !== id);
 }
